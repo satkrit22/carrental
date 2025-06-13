@@ -35,6 +35,48 @@ ob_start();
 <link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png"> 
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
+<style>
+  /* Fixed height for car listing boxes */
+.recent-car-list {
+  display: flex;
+  flex-direction: column;
+  height: 300px; 
+  margin-bottom: 30px;
+}
+
+.car-info-box {
+  flex: 0 0 auto; 
+}
+
+.car-info-box img {
+  height: 200px; /* Fixed height for images */
+  width: 100%;
+  object-fit: cover; /* Maintain aspect ratio while covering the container */
+}
+
+.car-title-m {
+  flex: 0 0 auto; 
+  padding: 10px 0;
+}
+
+.inventory_info_m {
+  flex: 1 1 auto; /* Allow this to grow to fill remaining space */
+  overflow: hidden; /* Hide overflow text */
+  padding-bottom: 10px;
+}
+
+/* Make sure all columns have the same height */
+.col-list-3 {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.col-list-3 > .recent-car-list {
+  width: 100%;
+}
+
+
+</style>
 </head>
 <body>
   

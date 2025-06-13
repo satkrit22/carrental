@@ -25,7 +25,7 @@ else{
 <link href="assets/css/bootstrap-slider.min.css" rel="stylesheet">
 <!--FontAwesome Font Style -->
 <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="assets/css/payment.css" type="text/css">
 <!-- SWITCHER -->
 		<link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
@@ -106,7 +106,7 @@ foreach($results as $result)
    
       <div class="col-md-8 col-sm-8">
         <div class="profile_wrap">
-          <h5 class="uppercase underline">My Booikngs </h5>
+          <h5 class="uppercase underline">My Bookings </h5>
           <div class="my_vehicles_list">
             <ul class="vehicle_listing">
 <?php 
@@ -121,7 +121,11 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {
-  $_SESSION['bid']=$result->BookingNumber 
+  $_SESSION['bid']=$result->BookingNumber;
+  // Calculate total amount
+  $totalDays = $result->totaldays;
+  $pricePerDay = $result->PricePerDay;
+  $totalAmount = $totalDays * $pricePerDay;
   ?>
 
 <li>
@@ -154,36 +158,42 @@ foreach($results as $result)
        
               </li>
 
-<h5 style="color:blue">Invoice</h5>
-<table>
-  <tr>
-    <th>Car Name</th>
-    <th>From Date</th>
-    <th>To Date</th>
-    <th>Total Days</th>
-    <th>Rent / Day</th>
-  </tr>
-  <tr>
-    <td><?php echo htmlentities($result->VehiclesTitle);?>, <?php echo htmlentities($result->BrandName);?></td>
-     <td><?php echo htmlentities($result->FromDate);?></td>
-      <td> <?php echo htmlentities($result->ToDate);?></td>
-       <td><?php echo htmlentities($tds=$result->totaldays);?></td>
-        <td> <?php echo htmlentities($ppd=$result->PricePerDay);?></td>
-  </tr>
-  <tr>
-    <th colspan="4" style="text-align:center;"> Grand Total</th>
-    <th><?php echo htmlentities($tds*$ppd);?></th>
-  </tr>
-</table>
+<div class="payment-summary">
+  <h5 style="color:blue">Invoice</h5>
+  <table>
+    <tr>
+      <th>Car Name</th>
+      <th>From Date</th>
+      <th>To Date</th>
+      <th>Total Days</th>
+      <th>Rent / Day</th>
+    </tr>
+    <tr>
+      <td><?php echo htmlentities($result->VehiclesTitle);?>, <?php echo htmlentities($result->BrandName);?></td>
+      <td><?php echo htmlentities($result->FromDate);?></td>
+      <td><?php echo htmlentities($result->ToDate);?></td>
+      <td><?php echo htmlentities($totalDays);?></td>
+      <td>Rs. <?php echo htmlentities(number_format($pricePerDay));?></td>
+    </tr>
+    <tr>
+      <th colspan="4" style="text-align:center;"> Grand Total</th>
+      <th>Rs. <?php echo htmlentities(number_format($totalAmount));?></th>
+    </tr>
+  </table>
 
-<form action="initiate_payment.php" method="POST">
-    <input type="text" name="fullname" value="<?php echo $_SESSION['login'] ?>">
-    <input type="text" name="Ride" value="<?php echo htmlentities($result->VehiclesTitle);?>">
-    <input type="number" name="amount" value='<?php echo htmlentities($tds*$ppd);?>' />
+  <form action="initiate_payment.php" method="POST">
+    <input type="hidden" name="fullname" value="<?php echo htmlentities($result->FullName ?? $_SESSION['login']); ?>">
+    <input type="hidden" name="Ride" value="<?php echo htmlentities($result->VehiclesTitle);?>">
+    <input type="hidden" name="amount" value="<?php echo htmlentities($totalAmount);?>">
     <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
-   
-    <button class="btn btn-success btn-large" type="submit">Make Payment</button>
-</form>
+    <input type="hidden" name="booking_number" value="<?php echo htmlentities($result->BookingNumber);?>">
+    
+    <div class="form-group">
+      <p><strong>Total Amount to Pay:</strong> Rs. <?php echo htmlentities(number_format($totalAmount));?></p>
+      <button class="btn btn-success btn-lg" type="submit">Make Payment</button>
+    </div>
+  </form>
+</div>
 <hr />
               <?php }}  else { ?>
                 <h5 align="center" style="color:red">No booking yet</h5>
