@@ -1,22 +1,46 @@
-
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 13, 2025 at 07:22 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `carrental`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `UserName` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
-  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
-(1, 'admin', '5c428d8875d2948607f3e3fe134d71b4', '2024-06-20 12:22:38');
+(1, 'admin', '202cb962ac59075b964b07152d234b70', '2025-06-12 07:30:38');
 
 -- --------------------------------------------------------
 
@@ -33,9 +57,9 @@ CREATE TABLE `tblbooking` (
   `ToDate` varchar(20) DEFAULT NULL,
   `message` varchar(255) DEFAULT NULL,
   `Status` int(11) DEFAULT NULL,
-  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `LastUpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `PostingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LastUpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblbooking`
@@ -43,7 +67,18 @@ CREATE TABLE `tblbooking` (
 
 INSERT INTO `tblbooking` (`id`, `BookingNumber`, `userEmail`, `VehicleId`, `FromDate`, `ToDate`, `message`, `Status`, `PostingDate`, `LastUpdationDate`) VALUES
 (1, 123456789, 'test@gmail.com', 1, '2024-01-05', '2024-07-09', 'What  is the cost?', 1, '2024-01-24 14:03:09', NULL),
-(3, 380433545, 'satismakhadka@gmail.com', 1, '2024-05-26', '2024-05-28', 'Book Please', 1, '2024-05-26 02:21:59', '2024-05-26 02:22:45');
+(4, 803069148, 'sanchita1@gmail.com', 8, '2025-05-01', '2025-05-15', 'i want to rent a car for a week', 2, '2025-05-01 03:53:30', '2025-06-12 07:33:29'),
+(5, 212910788, 'sanchita1@gmail.com', 4, '2025-05-01', '2025-05-15', 'carrental\r\n', 1, '2025-05-01 05:51:16', '2025-06-12 08:34:35'),
+(6, 674184507, 'satismakhadka@gmail.com', 1, '2025-05-02', '2025-05-15', 'satisma', 1, '2025-05-02 06:52:46', '2025-05-30 06:31:43'),
+(7, 447380154, 'satismakhadka@gmail.com', 2, '2025-05-04', '2025-06-16', 'carrental', 1, '2025-05-02 09:04:23', '2025-05-30 06:31:28'),
+(8, 223202963, 'dhikjangba@gmail.com', 7, '2025-05-30', '2025-06-11', 'dxgfcghvj', 0, '2025-05-30 06:43:58', NULL),
+(9, 834424379, 'susmita@gmail.com', 1, '2025-06-12', '2025-06-17', 'xxxx', 0, '2025-06-12 06:29:37', NULL),
+(10, 638487288, 'dhikjangba@gmail.com', 8, '2025-06-12', '2025-06-18', 'cccc', 1, '2025-06-12 06:37:54', '2025-06-12 07:25:41'),
+(11, 352908849, 'satisma111@gmail.com', 2, '2025-06-26', '2025-06-30', ' bbbbbbbbbbbbbb', 0, '2025-06-12 07:41:12', NULL),
+(12, 327090847, 'satisma111@gmail.com', 7, '2025-06-12', '2025-06-25', 'bnnnn', 0, '2025-06-12 08:47:26', NULL),
+(13, 313281547, 'satisma111@gmail.com', 4, '2025-06-17', '2025-07-16', 'ghcdghdfhg', 0, '2025-06-12 12:20:52', NULL),
+(14, 458669768, 'satisma111@gmail.com', 3, '2025-07-01', '2025-06-17', 'bvjh', 0, '2025-06-12 12:28:16', NULL),
+(15, 634661441, 'satisma111@gmail.com', 4, '2025-06-14', '2025-06-16', 'ssxcac', 0, '2025-06-13 02:44:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -54,21 +89,21 @@ INSERT INTO `tblbooking` (`id`, `BookingNumber`, `userEmail`, `VehicleId`, `From
 CREATE TABLE `tblbrands` (
   `id` int(11) NOT NULL,
   `BrandName` varchar(120) NOT NULL,
-  `CreationDate` timestamp NULL DEFAULT current_timestamp(),
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblbrands`
 --
 
 INSERT INTO `tblbrands` (`id`, `BrandName`, `CreationDate`, `UpdationDate`) VALUES
-(1, 'Maruti', '2025-01-16 16:24:34', '2025-05-29 05:57:17'),
-(2, 'BMW', '2025-01-06 16:24:50', '2025-01-17 05:57:30'),
-(3, 'Audi', '2025-01-07 16:25:03', '2025-01-25 05:57:30'),
-(4, 'Nissan', '2025-01-10 16:25:13', '2025-01-12 05:57:30'),
-(5, 'Toyota', '2025-01-22 16:25:24', '2025-01-21 05:57:30'),
-(7, 'Volkswagon', '2025-01-16 06:22:13', '2025-01-30 14:14:09');
+(1, 'Maruti', '2024-01-16 16:24:34', '2024-05-29 05:57:17'),
+(2, 'BMW', '2024-01-06 16:24:50', '2024-01-17 05:57:30'),
+(3, 'Audi', '2024-01-07 16:25:03', '2024-01-25 05:57:30'),
+(4, 'Nissan', '2024-01-10 16:25:13', '2024-01-12 05:57:30'),
+(5, 'Toyota', '2024-01-22 16:25:24', '2024-01-21 05:57:30'),
+(7, 'Volkswagon', '2024-01-16 06:22:13', '2024-01-30 14:14:09');
 
 -- --------------------------------------------------------
 
@@ -78,17 +113,17 @@ INSERT INTO `tblbrands` (`id`, `BrandName`, `CreationDate`, `UpdationDate`) VALU
 
 CREATE TABLE `tblcontactusinfo` (
   `id` int(11) NOT NULL,
-  `Address` tinytext DEFAULT NULL,
+  `Address` tinytext,
   `EmailId` varchar(255) DEFAULT NULL,
   `ContactNo` char(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblcontactusinfo`
 --
 
 INSERT INTO `tblcontactusinfo` (`id`, `Address`, `EmailId`, `ContactNo`) VALUES
-(1, 'Chabahil,kathmandu', 'satismakhadka@gmail.com', '9800000006');
+(2, 'kapan,kathmandu', 'satismakhadka@gmail.com', '9863940406');
 
 -- --------------------------------------------------------
 
@@ -101,17 +136,18 @@ CREATE TABLE `tblcontactusquery` (
   `name` varchar(100) DEFAULT NULL,
   `EmailId` varchar(120) DEFAULT NULL,
   `ContactNumber` char(11) DEFAULT NULL,
-  `Message` longtext DEFAULT NULL,
-  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Message` longtext,
+  `PostingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblcontactusquery`
 --
 
 INSERT INTO `tblcontactusquery` (`id`, `name`, `EmailId`, `ContactNumber`, `Message`, `PostingDate`, `status`) VALUES
-(1, 'Kunal ', 'kunal@gmail.com', '7977779798', 'I want to know you brach in Chandigarh?', '2024-06-04 09:34:51', 1);
+(2, 'satisma', 'satismakhadka@gmail.com', '9870000000', 'ffggh', '2025-05-01 06:46:28', NULL),
+(3, 'satisma', 'satismakhadka@gmail.com', '9870000000', 'ffggh', '2025-05-01 06:47:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -124,14 +160,16 @@ CREATE TABLE `tblpages` (
   `PageName` varchar(255) DEFAULT NULL,
   `type` varchar(255) NOT NULL DEFAULT '',
   `detail` longtext NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblpages`
 --
 
 INSERT INTO `tblpages` (`id`, `PageName`, `type`, `detail`) VALUES
-(1, 'Terms and Conditions', 'terms', '<P align=justify><FONT size=2><STRONG><FONT color=#990000>(1) ACCEPTANCE OF TERMS</\", \"we\" or \"us\"//idifferenservicms of Services. time thvent Terms of Service. </FONT></P>\r\n<P align=justify><FONT size=2>Welcome to Yahoo! India. Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the follvariety of vehicle makes and models for customers to rent.</span><div><span style=\"color: rgb(62, 62, 62); font-family: &quot;Lucida Sans Unicode&quot;, &quot;Lucida Grande&quot;, sans-serif; font-size: 11px;\">ur mission is to be recognised as the global leader in Car Rental for companies and the public and private sector by partnering with our clients to provide the best and most efficient Cab Rental solutions and to achieve service excellence.</span><span style=\"color: rgb(52, 52, 52); font-family: Arial, Helvetica, sans-serif;\"><br></span></div>'),
+(1, 'Terms and Conditions', 'terms', '<P align=justify><FONT size=2><STRONG><FONT color=#990000>(1) ACCEPTANCE OF TERMS</FONT><BR><BR></STRONG>Welcome to Yahoo! India. 1Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the following Terms of Service (\"TOS\"), which may be updated by us from time to time without notice to you. You can review the most current version of the TOS at any time at: <A href=\"http://in.docs.yahoo.com/info/terms/\">http://in.docs.yahoo.com/info/terms/</A>. In addition, when using particular Yahoo services or third party services, you and Yahoo shall be subject to any posted guidelines or rules applicable to such services which may be posted from time to time. All such guidelines or rules, which maybe subject to change, are hereby incorporated by reference into the TOS. In most cases the guides and rules are specific to a particular part of the Service and will assist you in applying the TOS to that part, but to the extent of any inconsistency between the TOS and any guide or rule, the TOS will prevail. We may also offer other services from time to time that are governed by different Terms of Services, in which case the TOS do not apply to such other services if and to the extent expressly excluded by such different Terms of Services. Yahoo also may offer other services from time to time that are governed by different Terms of Services. These TOS do not apply to such other services that are governed by different Terms of Service. </FONT></P>\r\n<P align=justify><FONT size=2>Welcome to Yahoo! India. Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the following Terms of Service (\"TOS\"), which may be updated by us from time to time without notice to you. You can review the most current version of the TOS at any time at: </FONT><A href=\"http://in.docs.yahoo.com/info/terms/\"><FONT size=2>http://in.docs.yahoo.com/info/terms/</FONT></A><FONT size=2>. In addition, when using particular Yahoo services or third party services, you and Yahoo shall be subject to any posted guidelines or rules applicable to such services which may be posted from time to time. All such guidelines or rules, which maybe subject to change, are hereby incorporated by reference into the TOS. In most cases the guides and rules are specific to a particular part of the Service and will assist you in applying the TOS to that part, but to the extent of any inconsistency between the TOS and any guide or rule, the TOS will prevail. We may also offer other services from time to time that are governed by different Terms of Services, in which case the TOS do not apply to such other services if and to the extent expressly excluded by such different Terms of Services. Yahoo also may offer other services from time to time that are governed by different Terms of Services. These TOS do not apply to such other services that are governed by different Terms of Service. </FONT></P>\r\n<P align=justify><FONT size=2>Welcome to Yahoo! India. Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the following Terms of Service (\"TOS\"), which may be updated by us from time to time without notice to you. You can review the most current version of the TOS at any time at: </FONT><A href=\"http://in.docs.yahoo.com/info/terms/\"><FONT size=2>http://in.docs.yahoo.com/info/terms/</FONT></A><FONT size=2>. In addition, when using particular Yahoo services or third party services, you and Yahoo shall be subject to any posted guidelines or rules applicable to such services which may be posted from time to time. All such guidelines or rules, which maybe subject to change, are hereby incorporated by reference into the TOS. In most cases the guides and rules are specific to a particular part of the Service and will assist you in applying the TOS to that part, but to the extent of any inconsistency between the TOS and any guide or rule, the TOS will prevail. We may also offer other services from time to time that are governed by different Terms of Services, in which case the TOS do not apply to such other services if and to the extent expressly excluded by such different Terms of Services. Yahoo also may offer other services from time to time that are governed by different Terms of Services. These TOS do not apply to such other services that are governed by different Terms of Service. </FONT></P>'),
+(2, 'Privacy Policy', 'privacy', '<span style=\"color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</span>'),
+(3, 'About Us ', 'aboutus', '<span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13.3333px;\">We offer a varied fleet of cars, ranging from the compact. All our vehicles have air conditioning, &nbsp;power steering, electric windows. All our vehicles are bought and maintained at official dealerships only. Automatic transmission cars are available in every booking class.&nbsp;</span><span style=\"color: rgb(52, 52, 52); font-family: Arial, Helvetica, sans-serif;\">As we are not affiliated with any specific automaker, we are able to provide a variety of vehicle makes and models for customers to rent.</span><div><span style=\"color: rgb(62, 62, 62); font-family: &quot;Lucida Sans Unicode&quot;, &quot;Lucida Grande&quot;, sans-serif; font-size: 11px;\">ur mission is to be recognised as the global leader in Car Rental for companies and the public and private sector by partnering with our clients to provide the best and most efficient Cab Rental solutions and to achieve service excellence.</span><span style=\"color: rgb(52, 52, 52); font-family: Arial, Helvetica, sans-serif;\"><br></span></div>'),
 (11, 'FAQs', 'faqs', '																														<span style=\"color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Address------Test &nbsp; &nbsp;dsfdsfds</span>');
 
 -- --------------------------------------------------------
@@ -143,16 +181,17 @@ INSERT INTO `tblpages` (`id`, `PageName`, `type`, `detail`) VALUES
 CREATE TABLE `tblsubscribers` (
   `id` int(11) NOT NULL,
   `SubscriberEmail` varchar(120) DEFAULT NULL,
-  `PostingDate` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `PostingDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblsubscribers`
 --
 
 INSERT INTO `tblsubscribers` (`id`, `SubscriberEmail`, `PostingDate`) VALUES
-(4, 'harish@gmail.com', '2024-05-29 09:26:21'),
-(5, 'kunal@gmail.com', '2024-07-08 09:35:07');
+(6, 'satismakhadka@gmail.com', '2025-05-01 06:01:55'),
+(7, 'sanchita1@gmail.com', '2025-05-27 13:00:04'),
+(8, 'rambahadur@gmail.com', '2025-05-27 13:00:16');
 
 -- --------------------------------------------------------
 
@@ -164,9 +203,9 @@ CREATE TABLE `tbltestimonial` (
   `id` int(11) NOT NULL,
   `UserEmail` varchar(100) NOT NULL,
   `Testimonial` mediumtext NOT NULL,
-  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `PostingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbltestimonial`
@@ -191,17 +230,21 @@ CREATE TABLE `tblusers` (
   `Address` varchar(255) DEFAULT NULL,
   `City` varchar(100) DEFAULT NULL,
   `Country` varchar(100) DEFAULT NULL,
-  `RegDate` timestamp NULL DEFAULT current_timestamp(),
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblusers`
 --
 
 INSERT INTO `tblusers` (`id`, `FullName`, `EmailId`, `Password`, `ContactNo`, `dob`, `Address`, `City`, `Country`, `RegDate`, `UpdationDate`) VALUES
-(2, 'satisma khadka', 'satismakhadka@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '9800000000', NULL, NULL, NULL, NULL, '2024-05-26 02:20:35', NULL),
-(3, 'sanchita khadka', 'sanchita1@gmail.com', 'fcea920f7412b5da7be0cf42b8c93759', '986000', NULL, NULL, NULL, NULL, '2024-05-27 05:34:49', NULL);
+(5, 'sanchita', 'sanchita1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '987776666', NULL, NULL, NULL, NULL, '2025-04-29 01:56:15', NULL),
+(6, 'satisma', 'satismakhadka@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '984333361', NULL, NULL, NULL, NULL, '2025-05-01 06:00:20', NULL),
+(7, 'dhiki jangba', 'dhikjangba@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '9841208358', NULL, NULL, NULL, NULL, '2025-05-30 06:42:53', NULL),
+(8, 'susmita khadka', 'susmita@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '9863335371', '23/09/2002', 'Budhanilkantha', 'Kathmandu', 'Nepal', '2025-06-12 06:27:01', '2025-06-12 06:28:31'),
+(9, 'satisma khadka', 'satisma111@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '9863335371', NULL, NULL, NULL, NULL, '2025-06-12 07:37:48', NULL),
+(10, 'demo', 'demo@gmail.com', '161ebd7d45089b3446ee4e0d86dbcf92', '9818400974', NULL, NULL, NULL, NULL, '2025-06-13 05:22:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +256,7 @@ CREATE TABLE `tblvehicles` (
   `id` int(11) NOT NULL,
   `VehiclesTitle` varchar(150) DEFAULT NULL,
   `VehiclesBrand` int(11) DEFAULT NULL,
-  `VehiclesOverview` longtext DEFAULT NULL,
+  `VehiclesOverview` longtext,
   `PricePerDay` int(11) DEFAULT NULL,
   `FuelType` varchar(100) DEFAULT NULL,
   `ModelYear` int(6) DEFAULT NULL,
@@ -235,9 +278,9 @@ CREATE TABLE `tblvehicles` (
   `CentralLocking` int(11) DEFAULT NULL,
   `CrashSensor` int(11) DEFAULT NULL,
   `LeatherSeats` int(11) DEFAULT NULL,
-  `RegDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblvehicles`
@@ -249,7 +292,7 @@ INSERT INTO `tblvehicles` (`id`, `VehiclesTitle`, `VehiclesBrand`, `VehiclesOver
 (3, 'Audi Q8', 3, 'As per ARAI, the mileage of Q8 is 0 kmpl. Real mileage of the vehicle varies depending upon the driving habits. City and highway mileage figures also vary depending upon the road conditions.', 3000, 'Petrol', 2017, 5, 'audi-q8-front-view4.jpg', '1920x1080_MTC_XL_framed_Audi-Odessa-Armaturen_Spiegelung_CC_v05.jpg', 'audi1.jpg', '1audiq8.jpg', 'audi-q8-front-view4.jpeg', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-01-02 07:19:21', '2024-01-02 07:28:02'),
 (4, 'Nissan Kicks', 4, 'Latest Update: Nissan has launched the Kicks 2020 with a new turbocharged petrol engine. You can read more about it here.\r\n\r\nNissan Kicks Price and Variants: The Kicks is available in four variants: XL, XV, XV Premium, and XV Premium(O).', 800, 'Petrol', 2020, 5, 'front-left-side-47.jpg', 'kicksmodelimage.jpg', 'download.jpg', 'kicksmodelimage.jpg', '', 1, NULL, NULL, 1, NULL, NULL, 1, 1, NULL, NULL, NULL, 1, '2024-01-03 07:25:28', '2024-01-03 05:48:43'),
 (5, 'Nissan GT-R', 4, ' The GT-R packs a 3.8-litre V6 twin-turbocharged petrol, which puts out 570PS of max power at 6800rpm and 637Nm of peak torque. The engine is mated to a 6-speed dual-clutch transmission in an all-wheel-drive setup. The 2+2 seater GT-R sprints from 0-100kmph in less than 3', 2000, 'Petrol', 2019, 5, 'Nissan-GTR-Right-Front-Three-Quarter-84895.jpg', 'Best-Nissan-Cars-in-India-New-and-Used-1.jpg', '2bb3bc938e734f462e45ed83be05165d.jpg', '2020-nissan-gtr-rakuda-tan-semi-aniline-leather-interior.jpg', 'images.jpg', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-01-24 07:34:17', '2024-01-24 05:50:19'),
-(6, 'Nissan Sunny 2020', 4, 'Value for money product and it was so good It is more spacious than other sedans It looks like a luxurious car.', 400, 'CNG', 2018, 5, 'Nissan-Sunny-Right-Front-Three-Quarter-48975_ol.jpg', 'images (1).jpg', 'Nissan-Sunny-Interior-114977.jpg', 'nissan-sunny-8a29f53-500x375.jpg', 'new-nissan-sunny-photo.jpg', 1, 1, NULL, 1, 1, 1, 1, 1, 1, 1, 1, 0, '2024-01-25 09:12:49', '2024-01-25 05:50:56'),
+(6, 'Nissan Sunny 2020', 4, 'Value for money product and it was so good It is more spacious than other sedans It looks like a luxurious car.', 2000, 'CNG', 2018, 5, 'Nissan-Sunny-Right-Front-Three-Quarter-48975_ol.jpg', 'images (1).jpg', 'Nissan-Sunny-Interior-114977.jpg', 'nissan-sunny-8a29f53-500x375.jpg', 'new-nissan-sunny-photo.jpg', 1, 1, NULL, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-01-25 09:12:49', '2025-06-12 07:34:38'),
 (7, 'Toyota Fortuner', 5, 'Toyota Fortuner Features: It is a premium seven-seater SUV loaded with features such as LED projector headlamps with LED DRLs, LED fog lamp, and power-adjustable and foldable ORVMs. Inside, the Fortuner offers features such as power-adjustable driver seat, automatic climate control, push-button stop/start, and cruise control.\r\n\r\nToyota Fortuner Safety Features: The Toyota Fortuner gets seven airbags, hill assist control, vehicle stability control with brake assist, and ABS with EBD.', 3000, 'Petrol', 2020, 5, '2015_Toyota_Fortuner_(New_Zealand).jpg', 'toyota-fortuner-legender-rear-quarters-6e57.jpg', 'zw-toyota-fortuner-2020-2.jpg', 'download (1).jpg', '', NULL, NULL, NULL, NULL, NULL, 1, NULL, 1, NULL, 1, 1, 1, '2024-02-01 09:17:46', '2024-02-01 05:51:57'),
 (8, 'Maruti Suzuki Vitara Brezza', 1, 'The new Vitara Brezza is a well-rounded package that is feature-loaded and offers good drivability. And it is backed by Maruti’s vast service network, which ensures a peace of mind to customers. The petrol motor could have been more refined and offered more pep.', 600, 'Petrol', 2018, 5, 'marutisuzuki-vitara-brezza-right-front-three-quarter3.jpg', 'marutisuzuki-vitara-brezza-rear-view37.jpg', 'marutisuzuki-vitara-brezza-dashboard10.jpg', 'marutisuzuki-vitara-brezza-boot-space59.jpg', 'marutisuzuki-vitara-brezza-boot-space28.jpg', NULL, 1, 1, 1, NULL, NULL, 1, NULL, NULL, NULL, 1, NULL, '2024-02-13 09:23:11', '2024-02-28 05:52:34');
 
@@ -332,7 +375,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `tblbooking`
 --
 ALTER TABLE `tblbooking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tblbrands`
@@ -344,13 +387,13 @@ ALTER TABLE `tblbrands`
 -- AUTO_INCREMENT for table `tblcontactusinfo`
 --
 ALTER TABLE `tblcontactusinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tblcontactusquery`
 --
 ALTER TABLE `tblcontactusquery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tblpages`
@@ -362,7 +405,7 @@ ALTER TABLE `tblpages`
 -- AUTO_INCREMENT for table `tblsubscribers`
 --
 ALTER TABLE `tblsubscribers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbltestimonial`
@@ -374,7 +417,7 @@ ALTER TABLE `tbltestimonial`
 -- AUTO_INCREMENT for table `tblusers`
 --
 ALTER TABLE `tblusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tblvehicles`
